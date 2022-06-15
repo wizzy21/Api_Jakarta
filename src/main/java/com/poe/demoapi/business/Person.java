@@ -4,7 +4,7 @@ package com.poe.demoapi.business;
 
 public class Person {
     
-    private int id;
+    private Long id;
     private String firstname;
     private String lastname;
     
@@ -18,17 +18,15 @@ public class Person {
         this.firstname = firstname;
         this.lastname = lastname;
     }
-    
-    
-    
-    
-    // GETTERS AND SETTERS 
 
-    public int getId() {
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    // GETTERS AND SETTERS
+    public void setId(Long id) {
         this.id = id;
     }
 
