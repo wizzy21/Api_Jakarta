@@ -2,10 +2,11 @@
 package com.poe.demoapi.business;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 
 
-public class Annuaire {
+public class Directory {
     
     private Long nextId = 1L;
    private ArrayList<Person> people = new ArrayList<>();
@@ -48,19 +49,20 @@ public class Annuaire {
             return Optional.of(p);
             }
         }
-            return Optional.empty();
+            return Optional.empty(); // if 
     }   
     
   
-     public void addPersonne(Person newPerson){
+     public Person addPerson(Person newPerson){
         newPerson.setId(nextId);
         nextId++;
         people.add(newPerson);
+        return newPerson;
     }
 
    
-    
-    public void updatePersonne(Person person){
+ /*   // obligated to have a loop to look through and find the person wish to update 
+    public void updatePerson(Person person){
         for(Person p : people){
             if(p.getId().equals(person.getId())){
                 people.remove(p);
@@ -68,15 +70,42 @@ public class Annuaire {
             }
         }
     }
-    
-    public void deletePersonne(long id){
-        for(Person p : people){
+*/
+       public void updatePerson(Person person){
+        Iterator <Person>iterator = people.iterator();
+        int index =0;
+            while(iterator.hasNext()&& index == 0){
+                Person p =iterator.next();
+                if(p.getId().equals(person.getId())){
+                    index = people.indexOf(p);
+                //people.remove(p);
+               // people.add(person);
+            }
+        }
+            people.set(index, person);
+       }
+       
+       
+       // obligated to have a loop to look through and find the person wish to delete
+    public void deletePerson(long id){
+        /* for(Person p : people){
             if(p.getId().equals(id)){
                 people.remove(p);
             }
+        }*/
+        
+  
+        Iterator<Person> it = people.iterator();
+        int index = 0;
+        while (it.hasNext() && index == 0) {
+            Person p = it.next();
+            if (p.getId().equals(id)) {
+                index = people.indexOf(p);
+            }
         }
+
+        people.remove(index);
     }
-    
     
         
     }
